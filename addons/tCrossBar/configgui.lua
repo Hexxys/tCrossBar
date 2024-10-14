@@ -20,8 +20,8 @@ local validControls = T{
     { Name='Macro8', Description='Triggers the left macro of the right grouping.' },
     { Name='ComboLeft', Description='Used to activate macro combinations.' },
     { Name='ComboRight', Description='Used to activate macro combinations.' },
-    { Name='PreviousPalette', Description='Swaps to previous palette if pressed with ComboLeft held down and ComboRight released.' },
-    { Name='NextPalette', Description='Swaps to next palette if pressed with ComboRight held down and ComboLeft released.' },
+    { Name='PreviousPalette', Description='Swaps to previous palette.' },
+    { Name='NextPalette', Description='Swaps to next palette.' },
     { Name='BindingUp', Description='Changes to previous field in binding menu.' },
     { Name='BindingDown', Description='Changes to next field in binding menu.' },
     { Name='BindingNext', Description='Changes value forward in binding menu.' },
@@ -319,6 +319,8 @@ function exposed:Render()
                         end
                         imgui.EndCombo();
                     end
+                    CheckBox('Single Press Palette Swap', 'SinglePressPaletteSwap');
+                    imgui.ShowHelp('When enabled, palette swaps can be done with a single button press. When disabled, it requires a combination press.');
 
                     imgui.EndTabItem();
                 end

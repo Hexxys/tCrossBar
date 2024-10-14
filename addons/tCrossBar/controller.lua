@@ -225,21 +225,16 @@ function controller:Trigger(button, pressed)
     
     if (button == controls.PreviousPalette) then
         self.ComboState.PrevPalette = pressed;
-        if (pressed == true) and (self:GetMacroState() == 1) then
+        if (pressed == true) and (gSettings.SinglePressPaletteSwap or self:GetMacroState() == 1) then
             gBindings:PreviousPalette();
         end
-        if (self:GetMacroState() ~= 0) then
-            return true;
-        end
-        
+        return true;
     elseif (button == controls.NextPalette) then
         self.ComboState.NextPalette = pressed;
-        if (pressed == true) and (self:GetMacroState() == 2) then
+        if (pressed == true) and (gSettings.SinglePressPaletteSwap or self:GetMacroState() == 2) then
             gBindings:NextPalette();
         end
-        if (self:GetMacroState() ~= 0) then
-            return true;
-        end
+        return true;
     end
 
     --Don't trigger macros while binding GUI is active..

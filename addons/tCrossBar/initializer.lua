@@ -62,6 +62,7 @@ local defaultSettings = T{
     Controller = 'dualsense',
     BindMenuTimer = 1,
     TapTimer = 0.4,
+    SinglePressPaletteSwap = false,
 };
 gSettings = settings.load(defaultSettings);
 
