@@ -303,6 +303,8 @@ function exposed:Render()
                     imgui.ShowHelp('When enabled, pressing LR then R2 will be a seperate set from pressing R2 then L2.  When disabled, order won\'t matter.');
                     CheckBox('Double Tap', 'EnableDoubleTap');
                     imgui.ShowHelp('When enabled, a quick double tap then hold of L2 or R2 will produce a seperate macro set from single taps.');
+                    CheckBox('Triple Tap', 'EnableTripleTap');
+                    imgui.ShowHelp('When enabled, a quick triple tap then hold of L2 or R2 will produce a separate macro set from single and double taps.');
                     CheckBox('Always Show Double', 'ShowDoubleDisplay');
                     imgui.ShowHelp('When enabled, your L2 and R2 macros will be shown together while no combo keys are pressed.');
                     imgui.TextColored(header, 'Binding Menu');

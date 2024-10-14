@@ -13,6 +13,8 @@ local controller = {
         LeftTapTimer = 0,
         Right = false,
         RightTapTimer = 0,
+        LeftTapCount = 0,
+        RightTapCount = 0,
     },
 };
 
@@ -23,7 +25,9 @@ local ComboMode = {
     BothTriggersLeft = 3,
     BothTriggersRight = 4,
     LeftTriggerDouble = 5,
-    RightTriggerDouble = 6
+    RightTriggerDouble = 6,
+    LeftTriggerTriple = 7,
+    RightTriggerTriple = 8
 };
 
 local bindCommands = {
@@ -176,10 +180,20 @@ function controller:Trigger(button, pressed)
     if (button == controls.ComboLeft) then
         if (pressed == true) then
             if (not self.ComboState.Right) then
-                if (os.clock() < self.ComboState.LeftTapTimer) and (gSettings.EnableDoubleTap) then
-                    self.ComboState.CurrentMode = ComboMode.LeftTriggerDouble;
+                if (os.clock() < self.ComboState.LeftTapTimer) then
+                    if (self.ComboState.LeftTapCount == 1) and (gSettings.EnableDoubleTap) then
+                        self.ComboState.CurrentMode = ComboMode.LeftTriggerDouble;
+                        self.ComboState.LeftTapCount = 2;
+                    elseif (self.ComboState.LeftTapCount == 2) and (gSettings.EnableTripleTap) then
+                        self.ComboState.CurrentMode = ComboMode.LeftTriggerTriple;
+                        self.ComboState.LeftTapCount = 0;
+                    else
+                        self.ComboState.CurrentMode = ComboMode.LeftTrigger;
+                        self.ComboState.LeftTapCount = 1;
+                    end
                 else
                     self.ComboState.CurrentMode = ComboMode.LeftTrigger;
+                    self.ComboState.LeftTapCount = 1;
                 end
             else
                 if (gSettings.EnablePriority) then
@@ -202,10 +216,20 @@ function controller:Trigger(button, pressed)
     elseif (button == controls.ComboRight) then
         if (pressed == true) then
             if (not self.ComboState.Left) then
-                if (os.clock() < self.ComboState.RightTapTimer) and (gSettings.EnableDoubleTap) then
-                    self.ComboState.CurrentMode = ComboMode.RightTriggerDouble;
+                if (os.clock() < self.ComboState.RightTapTimer) then
+                    if (self.ComboState.RightTapCount == 1) and (gSettings.EnableDoubleTap) then
+                        self.ComboState.CurrentMode = ComboMode.RightTriggerDouble;
+                        self.ComboState.RightTapCount = 2;
+                    elseif (self.ComboState.RightTapCount == 2) and (gSettings.EnableTripleTap) then
+                        self.ComboState.CurrentMode = ComboMode.RightTriggerTriple;
+                        self.ComboState.RightTapCount = 0;
+                    else
+                        self.ComboState.CurrentMode = ComboMode.RightTrigger;
+                        self.ComboState.RightTapCount = 1;
+                    end
                 else
                     self.ComboState.CurrentMode = ComboMode.RightTrigger;
+                    self.ComboState.RightTapCount = 1;
                 end
             else
                 self.ComboState.CurrentMode = ComboMode.BothTriggersLeft;

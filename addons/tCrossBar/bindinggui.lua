@@ -19,7 +19,9 @@ local macroStateText = {
     [3] = 'Both Triggers (Left First)',
     [4] = 'Both Triggers (Right First)',
     [5] = 'Left Trigger (Double Tap)',
-    [6] = 'Right Trigger (Double Tap)'
+    [6] = 'Right Trigger (Double Tap)',
+    [7] = 'Left Trigger (Triple Tap)',
+    [8] = 'Right Trigger (Triple Tap)'
 };
 
 local buttonText = {
@@ -39,7 +41,9 @@ local macroComboBinds = {
     [3] = 'LTRT',
     [4] = 'RTLT',
     [5] = 'LT2',
-    [6] = 'RT2'
+    [6] = 'RT2',
+    [7] = 'LT3',
+    [8] = 'RT3'
 };
 
 
@@ -353,6 +357,7 @@ Setup.Trust = function(skipUpdate)
         Update.Action(state.Combos.Action[1]);
     end
 end
+
 
 Setup.Weaponskill = function(skipUpdate)
     state.ActionResources = T{};

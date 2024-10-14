@@ -10,7 +10,9 @@ local function GetButtonAlias(comboIndex, buttonIndex)
         [3] = 'LTRT',
         [4] = 'RTLT',
         [5] = 'LT2',
-        [6] = 'RT2'
+        [6] = 'RT2',
+        [7] = 'LT3',
+        [8] = 'RT3'
     };
     return string.format('%s:%d', macroComboBinds[comboIndex], buttonIndex);
 end

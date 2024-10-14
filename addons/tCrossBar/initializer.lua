@@ -52,6 +52,7 @@ local defaultSettings = T{
     HideWhileMap = true,
     DefaultSelectTarget = false,
     EnableDoubleTap = true,
+    EnableTripleTap = true,
     EnablePriority = true,
     ShowDoubleDisplay = true,
     LTRTMode = 'FullDouble',
